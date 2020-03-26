@@ -8,7 +8,6 @@ import {
   StyleSheet,
   View
 } from "react-native";
-const Expo = require("expo-constants");
 
 const { width, height } = Dimensions.get("screen");
 
@@ -157,10 +156,7 @@ const styles = StyleSheet.create({
   flexCentered: { flex: 1, alignContent: "center", justifyContent: "center" },
   maskImageStyle: {
     ...StyleSheet.absoluteFill,
-    top:
-      Expo != null && Expo.default != null
-        ? Expo.default.statusBarHeight * -1
-        : 0,
+    top: StatusBar.currentHeight,
     width,
     height,
     justifyContent: "center",
@@ -174,8 +170,11 @@ const styles = StyleSheet.create({
 
 AnimatedSplash.propTypes = {
   isLoaded: PropTypes.bool.isRequired,
-  logoImage: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object])
-    .isRequired,
+  logoImage: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]).isRequired,
   children: PropTypes.element,
   backgroundColor: PropTypes.string,
   logoWidth: PropTypes.number,
